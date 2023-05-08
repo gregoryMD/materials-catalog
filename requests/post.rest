@@ -1,0 +1,10 @@
+POST http://localhost:3000/api/
+Content-Type: application/json
+
+{
+    "name": "Newest Material",
+    "volume": 10000,
+    "deliveryDate": "12/1/23",
+    "color": "#F7B500",
+    "cost": 0.5
+}
