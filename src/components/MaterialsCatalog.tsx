@@ -1,14 +1,32 @@
-import Header from "../components/Header";
-import List from "@/components/List";
-import Details from "@/components/Details";
-import Footer from "@/components/Footer";
+"use client";
+
+import Header from "./Header";
+import List from "./List";
+import Details from "./Details";
+import Footer from "./Footer";
+import { useEffect, useState } from "react";
+import materialService from "../services/materials";
+import { Material } from "../types";
 
 export default function MaterialCatalog() {
+  const [materials, setMaterials] = useState<Material[]>([]);
+  const [activeItem, setActiveItem] = useState<Material | undefined>();
+
+  useEffect(() => {
+    materialService
+      .getAll()
+      .then((initialMaterials) => setMaterials(initialMaterials));
+  }, []);
+
+  const selectListItem = (event:) => {
+    setActiveItem(event.target.value)
+  }
+
   return (
     <div>
       <Header />
-      <List />
-      <Details />
+      <List materials={materials} />
+      <Details activeItem={activeItem} />
       <Footer />
     </div>
   );

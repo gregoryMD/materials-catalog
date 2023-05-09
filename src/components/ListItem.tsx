@@ -1,8 +1,15 @@
-export default function ListItem() {
+import { Material } from "../types";
+
+interface Props {
+  name: String;
+  volume: Number;
+}
+
+export default function ListItem({ name, volume }: Props) {
   return (
     <div>
-      <p>Item Name</p>
-      <p>Volume</p>
+      <p>{name}</p>
+      <p>{volume} m3</p>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-export default function Total() {
+export default function Footer() {
   let total;
 
   return (

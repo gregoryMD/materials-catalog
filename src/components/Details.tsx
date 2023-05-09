@@ -1,6 +1,9 @@
-"use client";
+import { Material } from "../types";
 
-export default function Details() {
+interface Props {
+  activeItem: Material;
+}
+export default function Details({ activeItem }: Props) {
   return (
     <div>
       <label htmlFor="name">Name</label>
