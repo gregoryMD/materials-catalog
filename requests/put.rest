@@ -1,11 +1,10 @@
-PUT http://localhost:3000/api/7
+PUT http://localhost:3000/api/645a5daf3e04a830e1770206
 Content-Type: application/json
 
 {
-    "id": 7,
-    "name": "Newest Material",
-    "volume": 10000,
-    "deliveryDate": "12/1/23",
+    "name": "Updated Material Name",
+    "volume": 20000,
+    "deliveryDate": "12/22/23",
     "color": "#F7B500",
     "cost": 0.5
 }

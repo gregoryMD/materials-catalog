@@ -1,44 +1,23 @@
 import { NextResponse, NextRequest } from "next/server";
-import { Material } from "@/types";
-
-let data: Material[] = [
-  {
-    id: 1,
-    name: "Sand",
-    volume: 102234,
-    deliveryDate: "12/10/2023",
-    color: "#F7B500",
-    cost: 0.1,
-  },
-  {
-    id: 2,
-    name: "Gravel",
-    volume: 10000,
-    deliveryDate: "12/10/2023",
-    color: "#F7B500",
-    cost: 0.5,
-  },
-];
+import Material from "../../model/material";
 
 export async function GET(request: Request): Promise<NextResponse> {
-  return NextResponse.json(data);
+  const materials = await Material.find({});
+  return NextResponse.json(materials);
 }
 
 export async function POST(request: Request) {
   const body = await request.json();
 
-  const maxId = data.length > 0 ? Math.max(...data.map((n) => n.id)) : 0;
-
-  const material: Material = {
-    id: maxId + 1,
+  const material = new Material({
     name: body.name,
     volume: body.volume,
     deliveryDate: body.deliveryDate,
     color: body.color,
     cost: body.cost,
-  };
+  });
 
-  data = data.concat(material);
+  const savedMaterial = await material.save();
 
-  return NextResponse.json({ material });
+  return NextResponse.json(savedMaterial);
 }
