@@ -1,6 +1,6 @@
 import { Error, Mongoose } from "mongoose";
 
-const mongoose = require("mongoose");
+const mongoose = new Mongoose();
 
 mongoose.set("strictQuery", false);
 
@@ -9,7 +9,7 @@ const url = process.env.MONGODB_URI;
 console.log("conecting to", url);
 
 mongoose
-  .connect(url)
+  .connect(url!)
   // eslint-disable-next-line no-unused-vars
   .then((result) => {
     console.log("connected to MongoDB");
@@ -35,4 +35,4 @@ materialSchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model("Person", materialSchema);
+export default mongoose.model("Material", materialSchema);
