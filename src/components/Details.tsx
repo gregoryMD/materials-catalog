@@ -2,44 +2,63 @@ import { Material } from "../types";
 
 interface Props {
   activeItem: Material;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+  newName: any;
+  newColor: any;
+  newVolume: any;
+  newCost: any;
+  newDate: any;
 }
-export default function Details({ activeItem }: Props) {
+export default function Details({
+  activeItem,
+  handleChange,
+  newName,
+  newColor,
+  newVolume,
+  newCost,
+  newDate,
+}: Props) {
   return (
     <div>
       <label htmlFor="name">Name</label>
       <input
         type="text"
         id="name"
-        onChange={() => {}}
+        onChange={handleChange}
         onBlur={() => {}}
+        value={activeItem ? activeItem.name : ""}
       ></input>
       <label htmlFor="color">Color</label>
       <input
         type="color"
         id="color"
-        onChange={() => {}}
+        onChange={handleChange}
         onBlur={() => {}}
+        value={activeItem ? activeItem.color : ""}
       ></input>
       <label htmlFor="volume">Volume (m3)</label>
       <input
         type="number"
         id="volume"
-        onChange={() => {}}
+        onChange={handleChange}
         onBlur={() => {}}
+        value={activeItem ? activeItem.volume : 0}
       ></input>
       <label htmlFor="cost">Cost (USD per m3)</label>
       <input
         type="number"
         id="cost"
-        onChange={() => {}}
+        onChange={handleChange}
         onBlur={() => {}}
+        value={activeItem ? activeItem.cost : 0}
       ></input>
-      <label htmlFor="date">Delivery Date</label>
+      <label htmlFor="deliveryDate">Delivery Date</label>
       <input
-        type="datetime-local"
-        id="date"
-        onChange={() => {}}
+        type="string"
+        id="deliveryDate"
+        onChange={handleChange}
         onBlur={() => {}}
+        value={activeItem ? activeItem.deliveryDate : ""}
       ></input>
     </div>
   );
