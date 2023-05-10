@@ -66,16 +66,38 @@ export default function MaterialCatalog() {
     }
   };
 
-  const sendData = () => {
-    //if id is not present in materials, posts (once first onblur occurs)
+  const sendData = (): void => {
     //puts if existing material
+    if (activeItem.id) {
+      materialService
+        .updateMaterial(activeItem.id, activeItem)
+        .then((updatedMat) => {
+          setMaterials(
+            materials.map((mat) =>
+              mat.id === updatedMat.id ? updatedMat : mat
+            )
+          );
+        });
+    } else {
+      materialService.addNew(activeItem).then((newMaterial) => {
+        setMaterials(materials.concat(newMaterial));
+        setActiveItem(newMaterial);
+      });
+
+      //if id is not present in materials, posts (once first onblur occurs)
+      //then sets activeItem to current
+    }
   };
 
   return (
     <div>
       <Header addNew={addMaterial} deleteItem={deleteMaterial} />
       <List materials={materials} handleClick={selectListItem} />
-      <Details activeItem={activeItem} handleChange={handleChange} />
+      <Details
+        activeItem={activeItem}
+        handleChange={handleChange}
+        sendData={sendData}
+      />
       <Footer />
     </div>
   );

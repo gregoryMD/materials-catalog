@@ -3,8 +3,9 @@ import { Material } from "../types";
 interface Props {
   activeItem: Material;
   handleChange: React.ChangeEventHandler<HTMLInputElement>;
+  sendData: () => void;
 }
-export default function Details({ activeItem, handleChange }: Props) {
+export default function Details({ activeItem, handleChange, sendData }: Props) {
   return (
     <div>
       <label htmlFor="name">Name</label>
@@ -12,7 +13,7 @@ export default function Details({ activeItem, handleChange }: Props) {
         type="text"
         id="name"
         onChange={handleChange}
-        onBlur={() => {}}
+        onBlur={sendData}
         value={activeItem ? activeItem.name : ""}
       ></input>
       <label htmlFor="color">Color</label>
@@ -20,7 +21,7 @@ export default function Details({ activeItem, handleChange }: Props) {
         type="color"
         id="color"
         onChange={handleChange}
-        onBlur={() => {}}
+        onBlur={sendData}
         value={activeItem ? activeItem.color : "#000000"}
       ></input>
       <label htmlFor="volume">Volume (m3)</label>
@@ -28,7 +29,7 @@ export default function Details({ activeItem, handleChange }: Props) {
         type="number"
         id="volume"
         onChange={handleChange}
-        onBlur={() => {}}
+        onBlur={sendData}
         value={activeItem ? activeItem.volume : 0}
       ></input>
       <label htmlFor="cost">Cost (USD per m3)</label>
@@ -36,7 +37,7 @@ export default function Details({ activeItem, handleChange }: Props) {
         type="number"
         id="cost"
         onChange={handleChange}
-        onBlur={() => {}}
+        onBlur={sendData}
         value={activeItem ? activeItem.cost : 0}
       ></input>
       <label htmlFor="deliveryDate">Delivery Date</label>
@@ -44,7 +45,7 @@ export default function Details({ activeItem, handleChange }: Props) {
         type="string"
         id="deliveryDate"
         onChange={handleChange}
-        onBlur={() => {}}
+        onBlur={sendData}
         value={activeItem ? activeItem.deliveryDate : ""}
       ></input>
     </div>
