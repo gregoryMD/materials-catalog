@@ -1,10 +1,15 @@
 import ActionsBar from "./ActionsBar";
 
-export default function Header() {
+interface Props {
+  addNew: () => void;
+  deleteItem: () => void;
+}
+
+export default function Header({ addNew, deleteItem }: Props) {
   return (
     <div>
       <h1>Materials</h1>
-      <ActionsBar />
+      <ActionsBar addNew={addNew} deleteItem={deleteItem} />
     </div>
   );
 }

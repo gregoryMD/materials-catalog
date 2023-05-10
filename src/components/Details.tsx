@@ -21,7 +21,7 @@ export default function Details({ activeItem, handleChange }: Props) {
         id="color"
         onChange={handleChange}
         onBlur={() => {}}
-        value={activeItem ? activeItem.color : ""}
+        value={activeItem ? activeItem.color : "#000000"}
       ></input>
       <label htmlFor="volume">Volume (m3)</label>
       <input

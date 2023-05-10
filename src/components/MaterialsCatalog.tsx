@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import materialService from "../services/materials";
 import { Material } from "../types";
+import { access } from "fs";
 
 export default function MaterialCatalog() {
   const [materials, setMaterials] = useState<Material[]>([]);
@@ -46,6 +47,25 @@ export default function MaterialCatalog() {
     }
   };
 
+  const addMaterial = () => {
+    //set activeItem to new item
+    const newMaterial = {
+      name: "",
+      volume: 0,
+      deliveryDate: "",
+      color: "#000000",
+      cost: 0,
+    };
+    setActiveItem(newMaterial);
+  };
+
+  const deleteMaterial = () => {
+    const id = activeItem && activeItem.id;
+    if (id) {
+      materialService.deleteMaterial(id!);
+    }
+  };
+
   const sendData = () => {
     //if id is not present in materials, posts (once first onblur occurs)
     //puts if existing material
@@ -53,7 +73,7 @@ export default function MaterialCatalog() {
 
   return (
     <div>
-      <Header />
+      <Header addNew={addMaterial} deleteItem={deleteMaterial} />
       <List materials={materials} handleClick={selectListItem} />
       <Details activeItem={activeItem} handleChange={handleChange} />
       <Footer />
