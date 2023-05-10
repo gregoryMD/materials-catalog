@@ -3,21 +3,8 @@ import { Material } from "../types";
 interface Props {
   activeItem: Material;
   handleChange: React.ChangeEventHandler<HTMLInputElement>;
-  newName: any;
-  newColor: any;
-  newVolume: any;
-  newCost: any;
-  newDate: any;
 }
-export default function Details({
-  activeItem,
-  handleChange,
-  newName,
-  newColor,
-  newVolume,
-  newCost,
-  newDate,
-}: Props) {
+export default function Details({ activeItem, handleChange }: Props) {
   return (
     <div>
       <label htmlFor="name">Name</label>
