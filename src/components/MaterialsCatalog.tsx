@@ -69,7 +69,9 @@ export default function MaterialCatalog() {
   const deleteMaterial = () => {
     const id = activeItem && activeItem.id;
     if (id) {
-      materialService.deleteMaterial(id!);
+      materialService.deleteMaterial(id!).then((deletedMat) => {
+        setMaterials(materials.filter((mat) => mat.id !== deletedMat.id));
+      });
     }
   };
 

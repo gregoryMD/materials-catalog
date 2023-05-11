@@ -19,7 +19,6 @@ const deleteMaterial = (id: string) => {
 };
 
 const updateMaterial = (id: string, newObj: Material) => {
-  console.log(`url: ${baseUrl}/${id}`, newObj);
   const req = axios.put(`${baseUrl}/${id}`, newObj);
   return req.then((res) => res.data);
 };
