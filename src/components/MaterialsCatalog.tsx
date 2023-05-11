@@ -7,16 +7,17 @@ import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import materialService from "../services/materials";
 import { Material } from "../types";
-import { access } from "fs";
 
 export default function MaterialCatalog() {
   const [materials, setMaterials] = useState<Material[]>([]);
   const [activeItem, setActiveItem] = useState<Material>(materials[0]);
 
+  //fetch data on page load
   useEffect(() => {
-    materialService
-      .getAll()
-      .then((initialMaterials) => setMaterials(initialMaterials));
+    materialService.getAll().then((initialMaterials) => {
+      setMaterials(initialMaterials);
+      setActiveItem(initialMaterials[0]);
+    });
   }, []);
 
   const selectListItem = (id: String) => {
@@ -24,6 +25,7 @@ export default function MaterialCatalog() {
     setActiveItem(selected!);
   };
 
+  //event handlers
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (
     event
   ): void => {
@@ -36,10 +38,16 @@ export default function MaterialCatalog() {
         setActiveItem({ ...activeItem, color: event.target.value });
         break;
       case "volume":
-        setActiveItem({ ...activeItem, volume: event.target.value });
+        setActiveItem({
+          ...activeItem,
+          volume: parseInt(event.target.value, 10),
+        });
         break;
       case "cost":
-        setActiveItem({ ...activeItem, cost: event.target.value });
+        setActiveItem({
+          ...activeItem,
+          cost: parseInt(event.target.value, 10),
+        });
         break;
       case "deliveryDate":
         setActiveItem({ ...activeItem, deliveryDate: event.target.value });
@@ -48,7 +56,6 @@ export default function MaterialCatalog() {
   };
 
   const addMaterial = () => {
-    //set activeItem to new item
     const newMaterial = {
       name: "",
       volume: 0,
@@ -67,7 +74,6 @@ export default function MaterialCatalog() {
   };
 
   const sendData = (): void => {
-    //puts if existing material
     if (activeItem.id) {
       materialService
         .updateMaterial(activeItem.id, activeItem)
@@ -83,22 +89,23 @@ export default function MaterialCatalog() {
         setMaterials(materials.concat(newMaterial));
         setActiveItem(newMaterial);
       });
-
-      //if id is not present in materials, posts (once first onblur occurs)
-      //then sets activeItem to current
     }
   };
 
+  const itemCosts = materials && materials.map((mat) => mat.cost * mat.volume);
+  console.log(itemCosts);
   return (
-    <div>
+    <div className="container mx-auto bg-gray-800 text-white p-6 w-2/3">
       <Header addNew={addMaterial} deleteItem={deleteMaterial} />
-      <List materials={materials} handleClick={selectListItem} />
-      <Details
-        activeItem={activeItem}
-        handleChange={handleChange}
-        sendData={sendData}
-      />
-      <Footer />
+      <div className="flex">
+        <List materials={materials} handleClick={selectListItem} />
+        <Details
+          activeItem={activeItem}
+          handleChange={handleChange}
+          sendData={sendData}
+        />
+      </div>
+      <Footer itemCosts={itemCosts} />
     </div>
   );
 }
