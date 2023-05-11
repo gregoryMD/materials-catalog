@@ -10,8 +10,12 @@ interface Props {
 export default function ListItem({ name, volume, id, handleClick }: Props) {
   return (
     <div onClick={() => handleClick(id)}>
-      <p>{name}</p>
-      <p>{`${volume}m3`}</p>
+      <p>
+        <b>{name}</b>
+      </p>
+      <p>
+        {`${volume} `}m<sup>3</sup>
+      </p>
     </div>
   );
 }

@@ -8,7 +8,7 @@ interface Props {
 
 export default function List({ materials, handleClick }: Props) {
   return (
-    <div>
+    <div className="bg-slate-950 w-1/3 p-4 text-sm">
       {materials.length ? (
         materials.map((each: Material) => (
           <ListItem
