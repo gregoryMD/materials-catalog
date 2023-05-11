@@ -1,4 +1,4 @@
-# Materials Catalog Component Demo - Gregory Diehl
+# Materials Catalog Component Demo
 
 This is a materials management component implement as a full-stack web application. It allows users to create and edit a catalog of materials, such as sand, gravel, and dirt, for construction projects. At a high level, this feature:
 
@@ -38,16 +38,9 @@ Then open [http://localhost:3000](http://localhost:3000) with your browser to se
 - Test coverage is minimal, in the limited time available I tried to strike a balance between full functionality, basic styling and some tests to demonstrate competency.
 - Other details that need to be completed in subsequent iterations: the color picker should include a text field, the date input is currently formatted as a string. These are items I intend to return to but did not have time to revisit within the time constraint.
 
-Total active development time was approximately 3 hours.
-
 ### Roadmap
 
 - Increase Test coverage
 - Refine styling to exactly match mock-ups & improve responsiveness
 - Validation for material details inputs
 - Improve color picker and date inputs
-
-## Author
-
-Gregory Diehl
-gdiehl265@gmail.com
