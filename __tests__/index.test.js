@@ -1,7 +1,7 @@
 import MaterialsCatalog from "../src/components/MaterialsCatalog";
 import Footer from "../src/components/Footer";
 import materialService from "../src/services/materials";
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 const mockMaterials = [
@@ -23,7 +23,7 @@ const mockMaterials = [
   },
 ];
 
-test("component fetches data on pageload and displays all as list, first item in details", async () => {
+test("component fetches data on pageload and displays all as list", async () => {
   const getAllMock = jest
     .spyOn(materialService, "getAll")
     .mockResolvedValue(mockMaterials);
@@ -34,6 +34,7 @@ test("component fetches data on pageload and displays all as list, first item in
 
   expect(material1Name).toBeInTheDocument();
   expect(material2Name).toBeInTheDocument();
+
   expect(getAllMock).toHaveBeenCalled();
 });
 

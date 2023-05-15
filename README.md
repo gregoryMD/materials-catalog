@@ -5,7 +5,7 @@ This is a materials management component implement as a full-stack web applicati
 - Displays the current list of materials
 - Allows the user to create, edit, and delete materials
 - Selects a material's color through a color picker
-- Calculates and display the total value of materials listed
+- Calculates and displays the total value of materials listed
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). The React/Typescript UI component makes calls to a REST API backend.
 

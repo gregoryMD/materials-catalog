@@ -4,7 +4,7 @@ import Header from "./Header";
 import List from "./List";
 import Details from "./Details";
 import Footer from "./Footer";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import materialService from "../services/materials";
 import { Material } from "../types";
 
@@ -20,10 +20,13 @@ export default function MaterialCatalog() {
     });
   }, []);
 
-  const selectListItem = (id: String) => {
-    const selected = materials.find((x) => x.id === id);
-    setActiveItem(selected!);
-  };
+  const selectListItem = useCallback(
+    (id: String) => {
+      const selected = materials.find((x) => x.id === id);
+      setActiveItem(selected!);
+    },
+    [materials, setActiveItem]
+  );
 
   //event handlers
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (
@@ -55,7 +58,7 @@ export default function MaterialCatalog() {
     }
   };
 
-  const addMaterial = () => {
+  const addMaterial = useCallback(() => {
     const newMaterial = {
       name: "",
       volume: 0,
@@ -64,18 +67,18 @@ export default function MaterialCatalog() {
       cost: 0,
     };
     setActiveItem(newMaterial);
-  };
+  }, [setActiveItem]);
 
-  const deleteMaterial = () => {
+  const deleteMaterial = useCallback(() => {
     const id = activeItem && activeItem.id;
     if (id) {
       materialService.deleteMaterial(id!).then((deletedMat) => {
         setMaterials(materials.filter((mat) => mat.id !== deletedMat.id));
       });
     }
-  };
+  }, [activeItem, materials]);
 
-  const sendData = (): void => {
+  const sendData = useCallback((): void => {
     if (activeItem.id) {
       materialService
         .updateMaterial(activeItem.id, activeItem)
@@ -92,10 +95,10 @@ export default function MaterialCatalog() {
         setActiveItem(newMaterial);
       });
     }
-  };
+  }, [materials, activeItem]);
 
   const itemCosts = materials && materials.map((mat) => mat.cost * mat.volume);
-  console.log(itemCosts);
+
   return (
     <div className="container mx-auto bg-gray-800 text-white p-6 w-2/3">
       <Header addNew={addMaterial} deleteItem={deleteMaterial} />

@@ -9,7 +9,10 @@ interface Props {
 
 export default function ListItem({ name, volume, id, handleClick }: Props) {
   return (
-    <div onClick={() => handleClick(id)}>
+    <div
+      className="border-solid border-2 border-white p-1"
+      onClick={() => handleClick(id)}
+    >
       <p>
         <b>{name}</b>
       </p>
