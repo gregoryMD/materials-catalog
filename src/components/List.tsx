@@ -8,7 +8,7 @@ interface Props {
 
 export default function List({ materials, handleClick }: Props) {
   return (
-    <div className="bg-slate-950 w-1/3 text-sm border-solid border-2 border-white">
+    <div className="bg-zinc-900 w-1/4 text-sm border-solid border border-stone-300 divide-y">
       {materials.length ? (
         materials.map((each: Material) => (
           <ListItem
@@ -20,7 +20,7 @@ export default function List({ materials, handleClick }: Props) {
           />
         ))
       ) : (
-        <p>No Materials</p>
+        <p className="text-center py-24 ">No Materials</p>
       )}
     </div>
   );

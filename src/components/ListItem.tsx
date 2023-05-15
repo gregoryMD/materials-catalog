@@ -9,14 +9,9 @@ interface Props {
 
 export default function ListItem({ name, volume, id, handleClick }: Props) {
   return (
-    <div
-      className="border-solid border-2 border-white p-1"
-      onClick={() => handleClick(id)}
-    >
-      <p>
-        <b>{name}</b>
-      </p>
-      <p>
+    <div className=" border-stone-300 p-2" onClick={() => handleClick(id)}>
+      <p>{name}</p>
+      <p className="text-xs">
         {`${volume} `}m<sup>3</sup>
       </p>
     </div>

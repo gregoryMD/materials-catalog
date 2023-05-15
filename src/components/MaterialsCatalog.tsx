@@ -100,7 +100,7 @@ export default function MaterialCatalog() {
   const itemCosts = materials && materials.map((mat) => mat.cost * mat.volume);
 
   return (
-    <div className="container mx-auto bg-gray-800 text-white p-6 w-2/3">
+    <div className="container mx-auto bg-zinc-800 text-stone-300 py-5 px-8 w-2/3">
       <Header addNew={addMaterial} deleteItem={deleteMaterial} />
       <div className="flex">
         <List materials={materials} handleClick={selectListItem} />
