@@ -1,5 +1,4 @@
 import { Material } from "../types";
-import DetailInput from "./DetailInput";
 
 interface Props {
   activeItem: Material;
