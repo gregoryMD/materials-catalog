@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Material } from "../types";
 
-const baseUrl = "http://localhost:3000/api";
+const baseUrl = "/api";
 
 const getAll = () => {
   const request = axios.get(baseUrl);

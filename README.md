@@ -9,6 +9,8 @@ This is a materials management component implement as a full-stack web applicati
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). The React/Typescript UI component makes calls to a REST API backend.
 
+You can view and use the Materials Catalog component [here](https://materials-catalog.fly.dev/)
+
 ## Getting Started
 
 First, run the development server:
@@ -33,7 +35,6 @@ Then open [http://localhost:3000](http://localhost:3000) with your browser to se
 ### Trade-offs
 
 - Validations for the inputs have not been implemented yet, as a result it is possible to add an 'empty' new item to the list by clicking into and out of an input without entering anything.
-- Currently the styling is approximate as I consider functionality and test coverage to have more importance and I wanted to keep development time on this project close to the 2-3 hours specififed in the prompt.
 - Implementing a database took slightly longer than using a simple in-memory store would have, but this was necessary due to Next's file-based routing. The time saved elsewhere by using Next & create-next-app likely offset the time that would have been saved by skipping the database implementation.
 - Test coverage is minimal, in the limited time available I tried to strike a balance between full functionality, basic styling and some tests to demonstrate competency.
 - Other details that need to be completed in subsequent iterations: the color picker should include a text field, the date input is currently formatted as a string. These are items I intend to return to but did not have time to revisit within the time constraint.
@@ -41,6 +42,6 @@ Then open [http://localhost:3000](http://localhost:3000) with your browser to se
 ### Roadmap
 
 - Increase Test coverage
-- Refine styling to exactly match mock-ups & improve responsiveness
+- Refine styling to improve responsiveness
 - Validation for material details inputs
 - Improve color picker and date inputs
